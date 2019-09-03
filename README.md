@@ -1,4 +1,4 @@
-# MR_datasense
+# Data Sense
 <b>[draft intro]</b> The Anthropocene highlights limitations in existing frameworks 
 for data collection and analysis with the suggestion that researchers have run up 
 against the limits of the knowable. This has been revealed in a number of ways: an 
