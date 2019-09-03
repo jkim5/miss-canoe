@@ -29,3 +29,9 @@ on your needs:
 * Waterproof DS18B20 Digital temperature sensor + extras (https://www.adafruit.com/product/381) 
 * Water quality meter (pH, DO, NO3, turbidity, salinity) 
 * Digital flow meter
+
+Links 
+* Dweet follow page (http://dweet.io/follow/miss-canoe)
+* Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
+* Data sensing CSV archive (from August 30, 2019) (http://www.mediaculturalstudies.com/miss-canoe/)
+
