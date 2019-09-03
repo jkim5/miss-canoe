@@ -30,7 +30,7 @@ on your needs:
 * Water quality meter (pH, DO, NO3, turbidity, salinity) 
 * Digital flow meter
 
-Links 
+Links:
 * Dweet follow page (http://dweet.io/follow/miss-canoe)
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
 * Data sensing CSV archive (from August 30, 2019) (http://www.mediaculturalstudies.com/miss-canoe/)
