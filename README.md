@@ -6,13 +6,14 @@ inadequacy in existing techniques to analyze a changing and uncertain future,
 challenges to the way in which researchers frame human activities relative to 
 environmental transformation, and the politics that inform what questions can be 
 asked. How are artists and researchers associated with <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project engaged in explorations of the limits of the 
 knowable, and what role does the concept of the Anthropocene have in prompting such 
 questioning? This data sensing device was developed in collaboration with the <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project and <a 
 href="http://mississippistudies.org/">Mississippi Studies</a>. 
+Project website: https://anthropocene-curriculum.org/project/mississippi/anthropocene-river-journey/travelers-wt/data-sensing
 
 Works with Dweet.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
