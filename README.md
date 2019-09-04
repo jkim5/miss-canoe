@@ -13,7 +13,8 @@ questioning? This data sensing device was developed in collaboration with the <a
 href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project and <a 
 href="http://mississippistudies.org/">Mississippi Studies</a>. 
-Project website: https://anthropocene-curriculum.org/project/mississippi/anthropocene-river-journey/travelers-wt/data-sensing
+
+<b>Project website:</b> https://anthropocene-curriculum.org/project/mississippi/anthropocene-river-journey/travelers-wt/data-sensing
 
 Works with Dweet.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
