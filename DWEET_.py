@@ -5,17 +5,17 @@
 # Example dweet https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99
 
 import urllib.request
+from urllib.error import HTTPError, URLError
 import time
 import datetime
 
 dweet_url = "https://dweet.io/dweet/for/miss-canoe?"
-dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
+gc_url = "https://us-central1-miss-anthro.cloudfunctions.net/endpoint?"
+# dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
 
 # using dweet.io syntax
 def dweet_it(request):
-
-    x = (dweet_url + 
-    "crew=" + str(request[0].crew) + "&" +
+    params = ("crew=" + str(request[0].crew) + "&" +
     "date=" + str(request[0].date) + "&" +
     "&time-GMT=" + str(request[0].time) + "&" +
     "latitude=" + str(request[0].latitude) + "&" +
@@ -43,11 +43,24 @@ def dweet_it(request):
     "flow=" + str(request[0].flow))
 #    "computer_date=" + str(request[0].comp_date) + "&" +
 #    "computer_time=" + str(request[0].comp_time))
+    print(params)
+    
+    urls = [
+        '{}{}'.format(dweet_url, params), 
+        '{}{}'.format(gc_url, params)
+    ]
 
-    print(x)
-# timeout exits out of the url request in sec
-    response = urllib.request.urlopen(x, timeout=1)
-    html = response.read()
-    response.close()  # best practice to close the file
+    for url in urls:
+        time.sleep(0.1)
+        try:
+            # timeout exits out of the url request in sec
+            response = urllib.request.urlopen(url, timeout=1)
+            html = response.read()
+            time.sleep(0.1)
+            # best practice to close the file
+            response.close()  
+        except (HTTPError, URLError) as e:
+            print(e.reason)
+            continue
     return()
 
