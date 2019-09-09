@@ -1,4 +1,4 @@
-# MR_datasense
+# Data Sense
 <b>[draft intro]</b> The Anthropocene highlights limitations in existing frameworks 
 for data collection and analysis with the suggestion that researchers have run up 
 against the limits of the knowable. This has been revealed in a number of ways: an 
@@ -6,13 +6,15 @@ inadequacy in existing techniques to analyze a changing and uncertain future,
 challenges to the way in which researchers frame human activities relative to 
 environmental transformation, and the politics that inform what questions can be 
 asked. How are artists and researchers associated with <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project engaged in explorations of the limits of the 
 knowable, and what role does the concept of the Anthropocene have in prompting such 
 questioning? This data sensing device was developed in collaboration with the <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project and <a 
 href="http://mississippistudies.org/">Mississippi Studies</a>. 
+
+<b>Project website:</b> https://bit.ly/2ki0INu
 
 Works with Dweet.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
@@ -30,7 +32,7 @@ on your needs:
 * Water quality meter (pH, DO, NO3, turbidity, salinity) 
 * Digital flow meter
 
-Links 
+Links:
 * Dweet follow page (http://dweet.io/follow/miss-canoe)
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
 * Data sensing CSV archive (from August 30, 2019) (http://www.mediaculturalstudies.com/miss-canoe/)
