@@ -5,16 +5,18 @@
 # Example dweet https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99
 
 import urllib.request
+from urllib.error import HTTPError, URLError
 import time
 import datetime
 
+dweet_timeout = 5 # free version of dweet limited to one upload every 5 secs.
 dweet_url = "https://dweet.io/dweet/for/miss-canoe?"
 dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
 
 # using dweet.io syntax
 def dweet_it(request):
 
-    x = (dweet_url + 
+    url = (dweet_url + 
     "crew=" + str(request[0].crew) + "&" +
     "date=" + str(request[0].date) + "&" +
     "&time-GMT=" + str(request[0].time) + "&" +
@@ -40,14 +42,27 @@ def dweet_it(request):
     "ysi_no3=" + str(request[0].ysi_no3) + "&" +
     "ysi_sal=" + str(request[0].ysi_sal) + "&" +
     "ysi_tur=" + str(request[0].ysi_tur) + "&" +
-    "flow=" + str(request[0].flow))
+    "flow=" + str(request[0].flow) + "&" +
+    "timer=" + str(request[0].timer))
+
 #    "computer_date=" + str(request[0].comp_date) + "&" +
 #    "computer_time=" + str(request[0].comp_time))
 
-    print(x)
 # timeout exits out of the url request in sec
-    response = urllib.request.urlopen(x, timeout=1)
-    html = response.read()
-    response.close()  # best practice to close the file
+#    response = urllib.request.urlopen(x, timeout=1)
+#    html = response.read()
+#    response.close()  # best practice to close the file
+
+    try:
+        print(url)
+        # timeout exits out of the url request in sec
+        response = urllib.request.urlopen(url, timeout=dweet_timeout)
+        html = response.read()
+        # print(html)
+        print("Dweeted: success!")
+        # best practice to close the file
+        response.close()  
+    except (HTTPError, URLError) as e:
+        print(e.reason)
     return()
 

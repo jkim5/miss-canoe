@@ -1,7 +1,9 @@
 """
 ==================================
 
-NEED TO COMMENT THIS!
+2019 09 03
+
+NEED TO COMMENT THIS CODE FOR SHARING!
 
 2019 06 20
 > Current integration with the following sensors:
@@ -43,17 +45,17 @@ from WATERTEMP_ import *
 
 # Constants
 crew = None   # <> separate these, as commas are used for CSV. Make this a separate file so I don't go into this code.
-home = "/home/pi/Code/"
+home = "/home/pi/Code/miss-canoe/"
 log_file = "log.txt"
 crew_file = "crew_list.txt"
-freq_cycles = 3            # used for frequency of data collection (in seconds)
+freq_cycles = 0            # used for frequency of data collection (in seconds)
 freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
-num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
+# num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
 startup_pause = .5         # how long to pause at startup to display IP info
 
 # Object definition for data measurement
 class data:
-    def __init__(self, index=0, crew=None, date=None, time=None, latitude=None, longitude=None, altitude=0.0, speed=0.0, heading=0.0, climb=0.0, accel_x=0.0, accel_y=0.0, accel_z=0.0, gyro_x=0.0, gyro_y=0.0, gyro_z=0.0, air_temp=0.0, air_gas=0.0, air_humid=0.0, air_pressure=0.0, water_temp=0.0, ysi_ph=0.0, ysi_do=0.0, ysi_no3=0.0, ysi_sal=0.0, ysi_tur=0.0, flow=0.0, comp_date=None, comp_time=None):
+    def __init__(self, index=0, crew=None, date=None, time=None, latitude=None, longitude=None, altitude=0.0, speed=0.0, heading=0.0, climb=0.0, accel_x=0.0, accel_y=0.0, accel_z=0.0, gyro_x=0.0, gyro_y=0.0, gyro_z=0.0, air_temp=0.0, air_gas=0.0, air_humid=0.0, air_pressure=0.0, water_temp=0.0, ysi_ph=0.0, ysi_do=0.0, ysi_no3=0.0, ysi_sal=0.0, ysi_tur=0.0, flow=0.0, comp_date=None, comp_time=None, timer=0):
         self.index = 0
         self.crew = crew
         self.date = date
@@ -83,6 +85,7 @@ class data:
         self.flow = flow       # flow not part of device; will integrate manually
         self.comp_date = comp_date  # computer date as back-up in case of GPS failure
         self.comp_time = comp_time   # computer time as back-up in case of GPS failure. keep at end
+        self.timer = timer # running timer
 
 # -------SUBROUTINES-------------------------
 # Parse up system date and time and re-format
@@ -171,7 +174,8 @@ def write_to_file(data):
           str(data[0].ysi_no3) + ", " +
           str(data[0].ysi_sal) + ", " +
           str(data[0].ysi_tur) + ", " +
-          str(data[0].flow) +
+          str(data[0].flow) + "," +
+          str(data[0].timer) +
           "\n")
 # computer time is wrong because of no hardware clock. do not write.
 #          str(data[0].comp_date) + ", " +
@@ -249,6 +253,8 @@ disp.show()
 # main loop
 
 while True:
+
+    timer = int(time.time()) # running timer for purposes of tracking time without accurate time
 
 # Determine the day's data log filename. Here in the event that the program is left running multiple days.
     todays_log_filename =  (str(date_format(datetime.datetime.today()) + "-data" + log_file))   # used for filenaming and management
@@ -368,6 +374,7 @@ while True:
     incoming_data[0].water_temp = water_temp
     incoming_data[0].comp_date = str(datetime.datetime.now().date()) # keep at end
     incoming_data[0].comp_time = str(datetime.datetime.now().time())
+    incoming_data[0].timer = str(timer)
 
 # DWEET integration
 # working... needs error handling integration
@@ -375,7 +382,7 @@ while True:
     try:
         dweet_it(incoming_data)
     except:
-        msg_handler("ERROR: dweet_it()", "likely unable to urlopen")
+        msg_handler("ERROR: dweet_it()", "internet?")
 
 # WRITE append and save data to file
 
