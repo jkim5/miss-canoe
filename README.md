@@ -16,7 +16,7 @@ href="http://mississippistudies.org/">Mississippi Studies</a>.
 
 <b>Project website:</b> https://bit.ly/2ki0INu
 
-Works with Dweet.io 
+Works with Dweetpro.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
 (for archiving and backup). This code was written for a device consisting of the 
 following hardware, but the code is modular, allowing you to remove sensors depending 
@@ -33,7 +33,8 @@ on your needs:
 * Digital flow meter
 
 Links:
-* Dweet follow page (http://dweet.io/follow/miss-canoe)
+* Dweet follow page (http://dweetpro.io/follow/miss-canoe)
+  * How to use Dweets: http://dweet.io/#HowTo
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
 * Data sensing CSV archive (from August 30, 2019) (http://www.mediaculturalstudies.com/miss-canoe/)
 

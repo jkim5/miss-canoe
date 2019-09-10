@@ -2,16 +2,14 @@
 # some example code: https://www.timguelke.net/blog/2018/11/17/how-to-build-a-raspberry-pi-air-quality-station
 # and dweet
 #
-# Example dweet https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99
 
 import urllib.request
 from urllib.error import HTTPError, URLError
 import time
 import datetime
 
-dweet_timeout = 5 # free version of dweet limited to one upload every 5 secs.
-dweet_url = "https://dweet.io/dweet/for/miss-canoe?"
-dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
+dweet_timeout = 1 # free pro version of dweet limited to one upload ~1-2 secs. 
+dweet_url = "https://dweetpro.io/dweet/for/miss-canoe?" # swtiched to dweetpro from dweet. faster upload times.
 
 # using dweet.io syntax
 def dweet_it(request):

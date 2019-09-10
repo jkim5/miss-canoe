@@ -46,7 +46,7 @@ crew = None   # <> separate these, as commas are used for CSV. Make this a separ
 home = "/home/pi/Code/miss-canoe/"
 log_file = "log.txt"
 crew_file = "crew_list.txt"
-freq_cycles = 0            # used for frequency of data collection (in seconds)
+freq_cycles = 2            # used for frequency of data collection (in seconds)
 freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
 # num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
 startup_pause = .5         # how long to pause at startup to display IP info
