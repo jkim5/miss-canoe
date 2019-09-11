@@ -8,6 +8,7 @@ from urllib.error import HTTPError, URLError
 import time
 import datetime
 
+dweet_timeout = 1
 dweet_url = "https://dweet.io/dweet/for/miss-canoe?"
 gc_url = "https://us-central1-miss-anthro.cloudfunctions.net/endpoint?"
 # dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
