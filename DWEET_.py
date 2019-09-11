@@ -59,7 +59,7 @@ def dweet_it(request):
             html = response.read()
             time.sleep(0.1)
             # best practice to close the file
-            response.close()  
+            response.close()
         except (HTTPError, URLError) as e:
             print(e.reason)
             continue

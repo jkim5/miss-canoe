@@ -4,15 +4,12 @@
 * Started the process of adding significant comments throughout.
 * Include credits.
 
-<<<<<<< HEAD
 2019 09 03
 
 NEED TO COMMENT THIS CODE FOR SHARING!
-=======
 NOTES
 * Crontab integration for starting the service during reboot
     * There needs to be a pause for system startup for crontab to work with this program. I've implement a 10 sec delay, which seems to work.
->>>>>>> b6c09aee42a6e0396cc0435b4104ec960b54ba9f
 
 STILL TO DO
 * Error handling - tricky as errors in libraries tend to break the code 
@@ -26,6 +23,8 @@ Based on other peoples work throughout. Adding credits throughout.
 # Import python modules
 import time
 import datetime
+import threading
+
 # IMPORTANT need to pause for crontab job for all computer services to start. 
 # 10 sec seems to work.
 # Move this
@@ -242,8 +241,8 @@ crew = read_crew()
 disp.fill(0)
 disp.show()
 
-# Main loop
-while True:
+def log_data():
+    threading.Timer(1, log_data).start()
 
     timer = int(time.time()) # running timer for purposes of tracking time without accurate time
 
@@ -386,6 +385,9 @@ while True:
     set_gpstime(incoming_data)
 
 # SLEEP
-    time.sleep(freq_cycles)
-    cycles = cycles + 1 # for ftp upload count
+    # time.sleep(freq_cycles)
+    # cycles = cycles + 1 # for ftp upload count
 
+
+# Main loop
+log_data()
