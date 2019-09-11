@@ -2,7 +2,6 @@
 # some example code: https://www.timguelke.net/blog/2018/11/17/how-to-build-a-raspberry-pi-air-quality-station
 # and dweet
 #
-# Example dweet https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99
 
 import urllib.request
 from urllib.error import HTTPError, URLError
@@ -40,7 +39,9 @@ def dweet_it(request):
     "ysi_no3=" + str(request[0].ysi_no3) + "&" +
     "ysi_sal=" + str(request[0].ysi_sal) + "&" +
     "ysi_tur=" + str(request[0].ysi_tur) + "&" +
-    "flow=" + str(request[0].flow))
+    "flow=" + str(request[0].flow) + "&" +
+    "timer=" + str(request[0].timer))
+
 #    "computer_date=" + str(request[0].comp_date) + "&" +
 #    "computer_time=" + str(request[0].comp_time))
     print(params)
@@ -50,6 +51,7 @@ def dweet_it(request):
         '{}{}'.format(gc_url, params)
     ]
 
+<<<<<<< HEAD
     for url in urls:
         time.sleep(0.1)
         try:
@@ -62,5 +64,23 @@ def dweet_it(request):
         except (HTTPError, URLError) as e:
             print(e.reason)
             continue
+=======
+# timeout exits out of the url request in sec
+#    response = urllib.request.urlopen(x, timeout=1)
+#    html = response.read()
+#    response.close()  # best practice to close the file
+
+    try:
+        print(url)
+        # timeout exits out of the url request in sec
+        response = urllib.request.urlopen(url, timeout=dweet_timeout)
+        html = response.read()
+        # print(html)
+        print("Dweeted: success!")
+        # best practice to close the file
+        response.close()  
+    except (HTTPError, URLError) as e:
+        print(e.reason)
+>>>>>>> master
     return()
 

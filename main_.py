@@ -1,26 +1,25 @@
 """
 ==================================
+2019 09 04
+* Started the process of adding significant comments throughout.
+* Include credits.
 
-NEED TO COMMENT THIS!
+<<<<<<< HEAD
+2019 09 03
 
-2019 06 20
-> Current integration with the following sensors:
-    > GPS
-    > 9-DOF (accelerometer, gyroscope, magnetoscope)
-    > Air sensor (air temp, humidity, pressure, VOCs)
-    > Water sensor (temp)
+NEED TO COMMENT THIS CODE FOR SHARING!
+=======
+NOTES
+* Crontab integration for starting the service during reboot
+    * There needs to be a pause for system startup for crontab to work with this program. I've implement a 10 sec delay, which seems to work.
+>>>>>>> b6c09aee42a6e0396cc0435b4104ec960b54ba9f
 
-> Note about CRONTAB integration for starting the service during reboot
-    > There needs to be a pause for system startup for crontab to work with this program. I've implement a 10 sec delay, which seems to work.
-
-TO DO
-> FTP error handling
-> Integrate error handling into submodules
-> figure out GPS issues
-    > (shutdown after period of inactivity). perhaps its a feature of the GPS unit itself?
-    > When gpsd is running hangs and doesn't return info
+STILL TO DO
+* Error handling - tricky as errors in libraries tend to break the code 
+* Move code to Github, especially noting Issues
 
 Author(s): John Kim <jkim5@macalester.edu>
+Based on other peoples work throughout. Adding credits throughout.
 
 ==================================
 """
@@ -29,31 +28,32 @@ import time
 import datetime
 # IMPORTANT need to pause for crontab job for all computer services to start. 
 # 10 sec seems to work.
+# Move this
 time.sleep(0)
 
 # Import my modules
 from GPS_ import *
 from DWEET_ import *
-# from FTP_ import *
 from OLED_ import *
 from DOF_ import *
 from AIR_ import *
 from WATERTEMP_ import *
 # from READFILE_ import *
+# from FTP_ import *
 
 # Constants
 crew = None   # <> separate these, as commas are used for CSV. Make this a separate file so I don't go into this code.
-home = "/home/pi/Code/"
+home = "/home/pi/Code/miss-canoe/"
 log_file = "log.txt"
 crew_file = "crew_list.txt"
-freq_cycles = 3            # used for frequency of data collection (in seconds)
+freq_cycles = 2            # used for frequency of data collection (in seconds)
 freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
-num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
+# num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
 startup_pause = .5         # how long to pause at startup to display IP info
 
 # Object definition for data measurement
 class data:
-    def __init__(self, index=0, crew=None, date=None, time=None, latitude=None, longitude=None, altitude=0.0, speed=0.0, heading=0.0, climb=0.0, accel_x=0.0, accel_y=0.0, accel_z=0.0, gyro_x=0.0, gyro_y=0.0, gyro_z=0.0, air_temp=0.0, air_gas=0.0, air_humid=0.0, air_pressure=0.0, water_temp=0.0, ysi_ph=0.0, ysi_do=0.0, ysi_no3=0.0, ysi_sal=0.0, ysi_tur=0.0, flow=0.0, comp_date=None, comp_time=None):
+    def __init__(self, index=0, crew=None, date=None, time=None, latitude=None, longitude=None, altitude=0.0, speed=0.0, heading=0.0, climb=0.0, accel_x=0.0, accel_y=0.0, accel_z=0.0, gyro_x=0.0, gyro_y=0.0, gyro_z=0.0, air_temp=0.0, air_gas=0.0, air_humid=0.0, air_pressure=0.0, water_temp=0.0, ysi_ph=0.0, ysi_do=0.0, ysi_no3=0.0, ysi_sal=0.0, ysi_tur=0.0, flow=0.0, comp_date=None, comp_time=None, timer=0):
         self.index = 0
         self.crew = crew
         self.date = date
@@ -83,6 +83,7 @@ class data:
         self.flow = flow       # flow not part of device; will integrate manually
         self.comp_date = comp_date  # computer date as back-up in case of GPS failure
         self.comp_time = comp_time   # computer time as back-up in case of GPS failure. keep at end
+        self.timer = timer # running timer
 
 # -------SUBROUTINES-------------------------
 # Parse up system date and time and re-format
@@ -125,10 +126,8 @@ def gps_time_format(timenow):
     x = timenow[11:22]
     return(x)
 
-
+# Because raspberry pi does not have a onboard clock, set time to gps time if there's a discrepency
 def set_gpstime(data):
-# because raspberry pi does not have a onboard clock, sett time to gps if there's a discrepency
-# not written yet
    if (data[0].date != None):
      temp_gps_datetime_str = data[0].date + " " + data[0].time
      temp_gps_datetime = time.strptime(temp_gps_datetime_str, "%Y-%m-%d %H:%M:%S.%f")
@@ -138,7 +137,7 @@ def set_gpstime(data):
           print(temp_cmd)
           os.system(temp_cmd)
 
-# set up write to file 
+# Set up write to file 
 def write_to_file(data):
     try:
         tmploc = home + todays_log_filename
@@ -171,7 +170,8 @@ def write_to_file(data):
           str(data[0].ysi_no3) + ", " +
           str(data[0].ysi_sal) + ", " +
           str(data[0].ysi_tur) + ", " +
-          str(data[0].flow) +
+          str(data[0].flow) + "," +
+          str(data[0].timer) +
           "\n")
 # computer time is wrong because of no hardware clock. do not write.
 #          str(data[0].comp_date) + ", " +
@@ -188,7 +188,7 @@ def read_crew():
     file2 = open(tmploc, "r")
     crew = file2.readline()
 
-    # there is a trailing character at the end of the line. Can't tell what it is so removin$
+    # there is a trailing character at the end of the line. Can't tell what it is so removing.
     lenx = len(crew) - 1
     crew = crew[0:lenx]
     file2.close()
@@ -235,20 +235,17 @@ msg_handler("Started main_.py", iptext)
 print("temporary pause for startup screen " + str(startup_pause) + " secs")
 time.sleep(startup_pause)
 
-# keep gps alive. also remove prvious gpslog.txt or it will get too large.
-# os.system('rm gpslog.txt')
-# os.system('gpxlogger -df gpslog.txt')
-
-# read in crew list
+# Read in crew list
 crew = read_crew()
 
 # Clear OLED display after sleep
 disp.fill(0)
 disp.show()
 
-# main loop
-
+# Main loop
 while True:
+
+    timer = int(time.time()) # running timer for purposes of tracking time without accurate time
 
 # Determine the day's data log filename. Here in the event that the program is left running multiple days.
     todays_log_filename =  (str(date_format(datetime.datetime.today()) + "-data" + log_file))   # used for filenaming and management
@@ -261,8 +258,7 @@ while True:
 #
 # GPS 
 # GPS needs to be on and running for this work
-# gpsd (how the program retrieves data) works weird, 
-# so this is an unforunate workaround for ensuring data is coming in
+# still figuring out how gpsd works (esp how the program retrieves data), so this is an unforunate workaround for ensuring data is coming in
 
     gps_date = None
     gps_time = None
@@ -300,17 +296,11 @@ while True:
       gps_climb = None
       msg_handler("ERROR: no GPS fix", "main_.py")
 
-      # try retarting gpsd daemon to see if it fixes issue
-      # os.system('sudo killall gpsd')
-      # os.system('sudo rm /var/run/gpsd.sock')
-      # os.system('sudo gpsd /dev/ttyUSB0 -F /var/run/gpsd.sock')
-
     else:
       disp.fill(0)
       disp.show()
 
 # DOF: acceleromoeter and gyroscope readings
-
     accel_x = 0
     accel_y = 0
     accel_z = 0
@@ -324,7 +314,6 @@ while True:
       msg_handler("ERROR: DOF reading", "main_.py")
 
 # AIR readings
-
     air_temp = 0
     air_gas = 0 
     air_humid = 0
@@ -336,7 +325,6 @@ while True:
       msg_handler("ERROR: AIR reading", "main_.py")
 
 # WATER temperature readings
-
     try:
       water_temp = read_temp()
     except:
@@ -345,7 +333,6 @@ while True:
 
 
 # Append data into
-
     incoming_data[0].crew = crew
     incoming_data[0].date = gps_date
     incoming_data[0].time = gps_time
@@ -368,25 +355,24 @@ while True:
     incoming_data[0].water_temp = water_temp
     incoming_data[0].comp_date = str(datetime.datetime.now().date()) # keep at end
     incoming_data[0].comp_time = str(datetime.datetime.now().time())
+    incoming_data[0].timer = str(timer)
 
 # DWEET integration
 # working... needs error handling integration
-
     try:
         dweet_it(incoming_data)
     except:
-        msg_handler("ERROR: dweet_it()", "likely unable to urlopen")
+        msg_handler("ERROR: dweet_it()", "internet?")
 
 # WRITE append and save data to file
-
     try:
         write_to_file(incoming_data)
     except:
         msg_handler("ERROR: write_to_file()", "main_.py")
 
-# FTP not implemented. Used a server-side handling of Dweets.
+# FTP
+# Not implemented. Used a server-side handling of Dweets.
 # FTP upload file at set intervals set by constant num_cycles
-
 # todays_log_filename is a global variable
 # if statement need to upload once every period
 

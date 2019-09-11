@@ -6,15 +6,17 @@ inadequacy in existing techniques to analyze a changing and uncertain future,
 challenges to the way in which researchers frame human activities relative to 
 environmental transformation, and the politics that inform what questions can be 
 asked. How are artists and researchers associated with <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project engaged in explorations of the limits of the 
 knowable, and what role does the concept of the Anthropocene have in prompting such 
 questioning? This data sensing device was developed in collaboration with the <a 
-href="https://www.hkw.de/en/programm/projekte/2018/mississippi_an_anthropocene_river/mississippi_an_anthropocene_river_start.php">Mississippi. 
+href="https://anthropocene-curriculum.org/">Mississippi. 
 An Anthropocene River</a> project and <a 
 href="http://mississippistudies.org/">Mississippi Studies</a>. 
 
-Works with Dweet.io 
+<b>Project website:</b> https://bit.ly/2ki0INu
+
+Works with Dweetpro.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
 (for archiving and backup). This code was written for a device consisting of the 
 following hardware, but the code is modular, allowing you to remove sensors depending 
@@ -31,7 +33,8 @@ on your needs:
 * Digital flow meter
 
 Links:
-* Dweet follow page (http://dweet.io/follow/miss-canoe)
+* Dweet follow page (http://dweetpro.io/follow/miss-canoe)
+  * How to use Dweets: http://dweet.io/#HowTo
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
 * Data sensing CSV archive (from August 30, 2019) (http://www.mediaculturalstudies.com/miss-canoe/)
 
