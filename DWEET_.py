@@ -51,20 +51,6 @@ def dweet_it(request):
         '{}{}'.format(gc_url, params)
     ]
 
-<<<<<<< HEAD
-    for url in urls:
-        time.sleep(0.1)
-        try:
-            # timeout exits out of the url request in sec
-            response = urllib.request.urlopen(url, timeout=1)
-            html = response.read()
-            time.sleep(0.1)
-            # best practice to close the file
-            response.close()  
-        except (HTTPError, URLError) as e:
-            print(e.reason)
-            continue
-=======
 # timeout exits out of the url request in sec
 #    response = urllib.request.urlopen(x, timeout=1)
 #    html = response.read()
@@ -81,6 +67,5 @@ def dweet_it(request):
         response.close()  
     except (HTTPError, URLError) as e:
         print(e.reason)
->>>>>>> master
     return()
 
