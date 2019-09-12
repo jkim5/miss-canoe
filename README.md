@@ -36,6 +36,6 @@ Links:
 * Dweet follow page (http://dweetpro.io/follow/miss-canoe)
   * How to use Dweets: http://dweet.io/#HowTo
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
-* Data sensing CSV archive (from 
-  * Leg 0 (Coffee Pot Landing, Lake Itasca, MN to Iron Bridge, Bemidji, MN) (8/30/2019-9/2/2019) (http://www.mediaculturalstudies.com/miss-canoe/)
+* Data sensing CSV archive (http://www.mediaculturalstudies.com/miss-canoe/). Includes:
+  * Leg 0 (Coffee Pot Landing, Lake Itasca, MN to Iron Bridge, Bemidji, MN) (8/30/2019-9/2/2019) 
 
