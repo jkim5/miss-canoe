@@ -139,9 +139,9 @@ def set_gpstime(data):
 # Set up write to file 
 def write_to_file(data):
     try:
-        tmploc = home + todays_log_filename
-        print("writing to: " + tmploc)
-        file = open(tmploc, "a")
+        todays_log_filename =  home + (str(date_format(datetime.datetime.today()) + "-data" + log_file))
+        print("writing to: " + todays_log_filename)
+        file = open(todays_log_filename, "a")
         x = (
           str(data[0].index) + ", " + 
           str(data[0].crew) + ", " + 
@@ -245,9 +245,6 @@ def log_data():
     threading.Timer(1, log_data).start()
 
     timer = int(time.time()) # running timer for purposes of tracking time without accurate time
-
-# Determine the day's data log filename. Here in the event that the program is left running multiple days.
-    todays_log_filename =  (str(date_format(datetime.datetime.today()) + "-data" + log_file))   # used for filenaming and management
 
 # initialize new data object
     incoming_data = []
