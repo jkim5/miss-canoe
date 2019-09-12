@@ -240,7 +240,9 @@ crew = read_crew()
 # disp.show()
 
 def log_data():
-    threading.Timer(1, log_data).start()
+    t = threading.Timer(1, log_data)
+    t.daemon = True
+    t.start()
 
     timer = int(time.time()) # running timer for purposes of tracking time without accurate time
 
