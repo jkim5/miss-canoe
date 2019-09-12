@@ -15,7 +15,7 @@ STILL TO DO
 * Error handling - tricky as errors in libraries tend to break the code 
 * Move code to Github, especially noting Issues
 
-Author(s): John Kim <jkim5@macalester.edu>
+Author(s): John Kim <jkim5@macalester.edu>, Anthony Tran <anthony.d.tran@gmail.com>
 Based on other peoples work throughout. Adding credits throughout.
 
 ==================================
@@ -48,7 +48,7 @@ crew_file = "crew_list.txt"
 freq_cycles = 2            # used for frequency of data collection (in seconds)
 freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
 # num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
-startup_pause = .5         # how long to pause at startup to display IP info
+startup_pause = 2         # how long to pause at startup to display IP info
 
 # Object definition for data measurement
 class data:
@@ -102,13 +102,12 @@ def datetime_format(timenow):
 # Parse up just date and re-format. Could be integrated with previous. Bah
 def date_format(timenow):
 
-    now = timenow
-    mm = str(now.month)
-    dd = str(now.day)
-    yyyy = str(now.year)
-##    hour = str(now.hour)
-##    mi = str(now.minute)
-##    ss = str(now.second)
+    # format month and day so double digits (leading 0 if single digit)
+    tempmm = '%02d' % timenow.month
+    tempdd = '%02d' % timenow.day
+    mm = str(tempmm)
+    dd = str(tempdd)
+    yyyy = str(timenow.year)
     timenow = yyyy + mm + dd
     return(timenow)
 
@@ -132,15 +131,15 @@ def set_gpstime(data):
      temp_gps_datetime = time.strptime(temp_gps_datetime_str, "%Y-%m-%d %H:%M:%S.%f")
      if (temp_gps_datetime != None):
        if (temp_gps_datetime != datetime.datetime.now()):
-          temp_cmd = "sudo date -s " + "'" + temp_gps_datetime_str + "'"
-          print(temp_cmd)
+          temp_cmd = "sudo date -s " + "'" + temp_gps_datetime_str + "'" # prints to screen new datetime
+          # print(temp_cmd)
           os.system(temp_cmd)
 
 # Set up write to file 
 def write_to_file(data):
     try:
         todays_log_filename =  home + (str(date_format(datetime.datetime.today()) + "-data" + log_file))
-        print("writing to: " + todays_log_filename)
+        print("writing to: " + todays_log_filename + "\n")
         file = open(todays_log_filename, "a")
         x = (
           str(data[0].index) + ", " + 
@@ -180,7 +179,7 @@ def write_to_file(data):
         file.write(x)
         file.close()
     except:
-        msg_handler("ERROR: write_to_file()", "n/a") # msg_handler takes two text messages for OLED
+        msg_handler("ERROR: write_to_file()", "") # msg_handler takes two text messages for OLED
 
 def read_crew():
     tmploc = home + crew_file
@@ -203,7 +202,7 @@ def msg_handler(str2, str3):
 # write error to a log file
     now = datetime.datetime.now()
     msg = (datetime_format(now) + " " + str2 + "\n")
-    print(msg)
+    print("\n" + msg)
     tmploc = home + log_file
     file = open(log_file, "a")
     file.write(msg)
@@ -225,21 +224,20 @@ def log_handler(str2):
 
 # Startup 
 
-cycles = 0   # used for timing of FTP uploads / once per num_cycles
+# cycles = 0   # used for timing of FTP uploads / once per num_cycles
 
-# Startup message with pause for IP info. Might be temporary
+# Display local IP for testing purposes
 f = os.popen('hostname -I')
 iptext = "IP: " + f.read()
 msg_handler("Started main_.py", iptext)
-print("temporary pause for startup screen " + str(startup_pause) + " secs")
 time.sleep(startup_pause)
 
 # Read in crew list
 crew = read_crew()
 
 # Clear OLED display after sleep
-disp.fill(0)
-disp.show()
+# disp.fill(0)
+# disp.show()
 
 def log_data():
     threading.Timer(1, log_data).start()
@@ -380,11 +378,6 @@ def log_data():
 # SET TIME TO GPS TIME.
 # because when there is no internet, pi does not update time. set time from GPS
     set_gpstime(incoming_data)
-
-# SLEEP
-    # time.sleep(freq_cycles)
-    # cycles = cycles + 1 # for ftp upload count
-
 
 # Main loop
 log_data()
