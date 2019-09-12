@@ -5,7 +5,7 @@ A Raspberry Pi app to record sensor data.
 ## Quickstart
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 python3 main_.py
 ```
 
