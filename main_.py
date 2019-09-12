@@ -240,7 +240,9 @@ crew = read_crew()
 # disp.show()
 
 # Initialize a scheduler
-sched = BlockingScheduler()
+sched = BlockingScheduler({
+    'apscheduler.job_defaults.max_instances': '8'
+})
 
 def log_data():
     timer = int(time.time()) # running timer for purposes of tracking time without accurate time
@@ -381,7 +383,7 @@ def log_data():
     set_gpstime(incoming_data)
 
 # Scheduler interval
-sched.add_job(log_data, 'interval', minutes=1)
+sched.add_job(log_data, 'interval', seconds=1)
 sched.start()
 
 try:
