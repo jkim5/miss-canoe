@@ -14,7 +14,7 @@ href="https://anthropocene-curriculum.org/">Mississippi.
 An Anthropocene River</a> project and <a 
 href="http://mississippistudies.org/">Mississippi Studies</a>. 
 
-<b>Project website:</b> https://bit.ly/2ki0INu
+<b>Project website:</b> https://anthropocene-curriculum.org/project/mississippi/anthropocene-river-journey/travelers-wt/data-sensing
 
 Works with Dweetpro.io 
 (for live IOT data sharing), Freeboard.io (live data visualization of data) and SFTP 
