@@ -383,10 +383,7 @@ def log_data():
     set_gpstime(incoming_data)
 
 # Scheduler interval
-<<<<<<< HEAD
 # sched.add_job(log_data, 'interval', minutes=1)
-=======
->>>>>>> d4a4549ea7667dd4251037a8da37786a0acc7bf9
 sched.add_job(log_data, 'interval', seconds=1)
 sched.start()
 
