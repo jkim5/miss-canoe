@@ -23,7 +23,7 @@ Based on other peoples work throughout. Adding credits throughout.
 # Import python modules
 import time
 import datetime
-import threading
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 # IMPORTANT need to pause for crontab job for all computer services to start. 
 # 10 sec seems to work.
@@ -239,9 +239,10 @@ crew = read_crew()
 # disp.fill(0)
 # disp.show()
 
-def log_data():
-    threading.Timer(1, log_data).start()
+# Initialize a scheduler
+sched = BlockingScheduler()
 
+def log_data():
     timer = int(time.time()) # running timer for purposes of tracking time without accurate time
 
 # initialize new data object
@@ -379,5 +380,14 @@ def log_data():
 # because when there is no internet, pi does not update time. set time from GPS
     set_gpstime(incoming_data)
 
-# Main loop
-log_data()
+# Scheduler interval
+sched.add_job(log_data, 'interval', minutes=1)
+sched.start()
+
+try:
+    # This is here to simulate application activity (which keeps the main thread alive).
+    while True:
+        time.sleep(5)
+except (KeyboardInterrupt, SystemExit):
+    # Not strictly necessary if daemonic mode is enabled but should be done if possible
+    sched.shutdown()

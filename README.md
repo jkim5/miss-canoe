@@ -1,4 +1,15 @@
-# Data Sense
+# Miss-Canoe
+
+A Raspberry Pi app to record sensor data.
+
+## Quickstart
+
+```
+pip install -r requirements.txt
+python main_.py
+```
+
+## Data Sense
 <b>[draft intro]</b> The Anthropocene highlights limitations in existing frameworks 
 for data collection and analysis with the suggestion that researchers have run up 
 against the limits of the knowable. This has been revealed in a number of ways: an 
