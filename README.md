@@ -6,7 +6,7 @@ A Raspberry Pi app to record sensor data.
 
 ```
 pip install -r requirements.txt
-python main_.py
+python3 main_.py
 ```
 
 ## Data Sense
