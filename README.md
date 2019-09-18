@@ -44,6 +44,7 @@ on your needs:
 * Digital flow meter
 
 Links:
+* Project website: https://anthropocene-curriculum.org/project/mississippi/anthropocene-river-journey/travelers-wt/data-sensing
 * Dweet follow page (http://dweetpro.io/follow/miss-canoe)
   * How to use Dweets: http://dweet.io/#HowTo
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)

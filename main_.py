@@ -45,10 +45,11 @@ crew = None   # <> separate these, as commas are used for CSV. Make this a separ
 home = "/home/pi/Code/miss-canoe/"
 log_file = "log.txt"
 crew_file = "crew_list.txt"
-freq_cycles = 2            # used for frequency of data collection (in seconds)
-freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
+# freq_cycles = 2            # used for frequency of data collection (in seconds)
+# freq_upload = 2              # freq of ftp uploads (in hours; .5 = 30 min)
 # num_cycles = freq_upload * (3600 / freq_cycles)        # works with freq_upload. Calculates num_cycles based on freq_upload. Do not change. 0 = every cycle
 startup_pause = 2         # how long to pause at startup to display IP info
+freq_job = 2    # frequency of job scheduling in seconds
 
 # Object definition for data measurement
 class data:
@@ -384,13 +385,13 @@ def log_data():
 
 # Scheduler interval
 # sched.add_job(log_data, 'interval', minutes=1)
-sched.add_job(log_data, 'interval', seconds=1)
+sched.add_job(log_data, 'interval', seconds=freq_job)
 sched.start()
 
 try:
     # This is here to simulate application activity (which keeps the main thread alive).
     while True:
-        time.sleep(5)
+        time.sleep(1)
 except (KeyboardInterrupt, SystemExit):
     # Not strictly necessary if daemonic mode is enabled but should be done if possible
     sched.shutdown()

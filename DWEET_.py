@@ -8,7 +8,7 @@ from urllib.error import HTTPError, URLError
 import time
 import datetime
 
-dweet_timeout = 1
+url_timeout = 1
 dweet_url = "https://dweetpro.io/dweet/for/miss-canoe?"
 gc_url = "https://us-central1-miss-anthro.cloudfunctions.net/endpoint?"
 # dweet_request = "https://dweet.io/dweet/for/miss-canoe?latitude=44.969677&longitude=-93.301985&temperature=70.5&crew=<ul>Joe<br>Neli<br>John<br>Carlina&time=14:08:26&ph=6.99"
@@ -56,7 +56,7 @@ def dweet_it(request):
         # time.sleep(0.1)
         try:
             # timeout exits out of the url request in sec
-            response = urllib.request.urlopen(url, timeout=dweet_timeout)
+            response = urllib.request.urlopen(url, timeout=url_timeout)
             html = response.read()
             # time.sleep(0.1)
             # best practice to close the file
