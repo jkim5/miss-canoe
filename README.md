@@ -52,3 +52,5 @@ Links:
   * Leg 0 (Coffee Pot Landing, Lake Itasca, MN to Iron Bridge, Bemidji, MN) (8/30/2019-9/2/2019) 
   * Leg 2 (Genoa, WI - Lock and Dam number 8 to Bad Axe, WI)
     * Water temperature is not accurate for Leg 2 (no effective way of putting the probe into the water from Voyageur canoes).
+    * Crew list is not accurate (removing for following legs).
+
