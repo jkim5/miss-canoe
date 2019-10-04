@@ -4,9 +4,12 @@
 import glob
 import time
 
-base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '28*')[0]
-device_file = device_folder + '/w1_slave'
+try:
+    base_dir = '/sys/bus/w1/devices/'
+    device_folder = glob.glob(base_dir + '28*')[0]
+    device_file = device_folder + '/w1_slave'
+except:
+    print("Error reading water temp.")
 
 def read_temp_raw():
     f = open(device_file, 'r')
