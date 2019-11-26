@@ -48,9 +48,10 @@ Links:
 * Dweet follow page (http://dweetpro.io/follow/miss-canoe)
   * How to use Dweets: http://dweet.io/#HowTo
 * Data sensing parameters spreadsheet - (https://docs.google.com/spreadsheets/d/1XQUHokEldGAHHUkqPo7iUMv8oDOIhpyluCG77mMU768/edit#gid=0)
-* Data sensing CSV archive (http://www.mediaculturalstudies.com/miss-canoe/). Includes:
+* Data sensing CSV archive (http://www.mediaculturalstudies.com/miss-canoe/ or https://drive.google.com/drive/folders/1ZREnqWJENywN_1Gw7ISwv1drBPgI8Je7?usp=sharing). Includes:
   * Leg 0 (Coffee Pot Landing, Lake Itasca, MN to Iron Bridge, Bemidji, MN) (8/30/2019-9/2/2019) 
   * Leg 2 (Genoa, WI - Lock and Dam number 8 to Bad Axe, WI)
     * Water temperature is not accurate for Leg 2 (no effective way of putting the probe into the water from Voyageur canoes).
     * Crew list is not accurate (removing for following legs).
+  * More comments to come.
 
