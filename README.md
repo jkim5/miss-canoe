@@ -10,9 +10,9 @@ python3 main_.py
 ```
 
 ## Data Sense
-<table>
+<table style="width:100%">
  <tr>
-  <td width=100%>
+  <td>
 <img src="http://www.mediaculturalstudies.com/miss-canoe/JOM_0881.JPG"> <img src="http://www.mediaculturalstudies.com/miss-canoe/Data_Sensing-1600x900.jpg"> <img src="http://www.mediaculturalstudies.com/miss-canoe/JOM_0882.jpg">
 <br>(Canoe photo by Joachim Mueller.)
   </td>
