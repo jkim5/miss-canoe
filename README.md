@@ -11,6 +11,7 @@ python3 main_.py
 
 ## Data Sense
 <img height=300 src="http://www.mediaculturalstudies.com/miss-canoe/Data_Sensing-1600x900.jpg"> <img height=300 src="http://www.mediaculturalstudies.com/miss-canoe/JOM_0881.JPG">
+(Canoe photo by Joachim Mueller.)
 
 <b>[draft intro]</b> The Anthropocene highlights limitations in existing frameworks 
 for data collection and analysis with the suggestion that researchers have run up 
