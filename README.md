@@ -10,7 +10,7 @@ python3 main_.py
 ```
 
 ## Data Sense
-<img src="https://drive.google.com/file/d/1zdEjeQZ3gMMWodq3GT5KQ8NRFb1RWym0/view">
+<img src="http://www.mediaculturalstudies.com/miss-canoe/Data_Sensing-1600x900.jpg">
 <b>[draft intro]</b> The Anthropocene highlights limitations in existing frameworks 
 for data collection and analysis with the suggestion that researchers have run up 
 against the limits of the knowable. This has been revealed in a number of ways: an 
